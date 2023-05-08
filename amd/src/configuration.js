@@ -59,7 +59,7 @@ export const configure = (instanceConfig) => {
     instanceConfig.menu = removeMenubarItem(instanceConfig.menu, 'format', 'bold');
 
     // This is how to remove toolbar buttons
-    instanceConfig.toolbar = removeToolbarButtons(instanceConfig.toolbar, 'formatting', [']bold','italic']);
+    instanceConfig.toolbar = removeToolbarButtons(instanceConfig.toolbar, 'formatting', ['bold','italic']);
 
     return instanceConfig;
 
