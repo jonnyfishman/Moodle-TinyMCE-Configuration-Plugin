@@ -27,9 +27,23 @@ import {
     removeMenubarItem
 } from 'editor_tiny/utils';
 
-export const configure = (instanceConfig) => {
+import {call} from 'core/ajax';
 
-    console.log(instanceConfig);
+export const configure = async (instanceConfig) => {
+
+  const buttonNames = await call({
+    methodname: 'tiny_configurator_get_buttons',
+    args: {}
+  }, {
+    success: (response) => {
+      console.log(response);
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+  console.log(buttonNames);
+
     // This could be tweaked to change the colours to match the theme etc.
     if (instanceConfig.menu.format) {
         instanceConfig.menu.format.items = instanceConfig.menu.format.items
@@ -59,6 +73,7 @@ export const configure = (instanceConfig) => {
     instanceConfig.menu = removeMenubarItem(instanceConfig.menu, 'format', 'bold');
 
     // This is how to remove toolbar buttons
+    console.log('buttonNames', buttonNames);
     instanceConfig.toolbar = removeToolbarButtons(instanceConfig.toolbar, 'formatting', ['bold','italic']);
 
     return instanceConfig;
