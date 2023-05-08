@@ -39,12 +39,12 @@ export default new Promise(async(resolve) => {
     ]);
 
     tinyMCE.PluginManager.add(`${component}/plugin`, (editor) => {
-        // Setup the Commands (buttons, menu items, and so on).
+        // This deals with the menu items
         setupCommands(editor);
 
         return pluginMetadata;
     });
 
-    // Resolve the Media Plugin and include configuration.
+    // Resolve the new tinyMCE instance and include button configuration
     resolve([`${component}/plugin`, Configuration]);
 });

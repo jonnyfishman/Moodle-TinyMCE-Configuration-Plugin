@@ -20,31 +20,17 @@
  * @copyright   2022, Stevani Andolo  <stevani@hotmail.com.au>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-/*
-import {get_string as getString} from 'core/str';
-import {
-    component,
-} from './common';
-*/
 import {removeSubmenuItem} from 'editor_tiny/utils';
 
 export const getSetup = async() => {
-    /*
-    const [
-    ] = await Promise.all([
-        getString('pluginname', component),
-    ]);
-    */
+
     return (editor) => {
-        // Register the Menu Button as a toggle.
 
         editor.on('init', function() {
-            // Hide justify alignment sub-menu.
-            removeSubmenuItem(editor, 'align', 'tiny:left');
-        });
+          // This remmoves a nested menu item
+            // is tiny: the nested prefix?
+          removeSubmenuItem(editor, 'align', 'tiny:left');
 
-        // Remove the alignleft button
-        // editor.ui.registry.getAll().icons.alignleft.remove();
-        // editor.ui.registry.getAll().buttons.alignleft.remove();
+        });
     };
 };
