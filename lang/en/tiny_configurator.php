@@ -26,3 +26,4 @@ $string['pluginname'] = 'Remove Tiny editor buttons';
 $string['pluginnamedesc'] = 'A plugin for disabling buttons in the TinyMCE text editor';
 $string['buttons'] = 'Disabled Buttons';
 $string['buttonsdesc'] = 'Enter a list of button names separated by a vertical bar (|) that should be disabled in the text editor';
+$string['helplinktext'] = 'Configurator';

@@ -14,10 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-class local_myplugin_external {
+namespace tiny_configurator\external;
+
+class get_buttons {
     public static function get_buttons() {
         global $DB;
-        $setting = $DB->get_field('tiny_configurator', 'buttons', ['id' => 1]);
+        $setting = $DB->get_field('tiny_configurator', 'disabledbuttons', ['id' => 1]);
         return $setting;
     }
 }

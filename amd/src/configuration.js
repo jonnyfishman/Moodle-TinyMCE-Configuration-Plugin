@@ -32,8 +32,9 @@ import {call} from 'core/ajax';
 export const configure = async (instanceConfig) => {
 
   const buttonNames = await call({
-    methodname: 'tiny_configurator_get_buttons',
+    methodname: 'tiny_configurator_buttons_get',
     args: {}
+    
   }, {
     success: (response) => {
       console.log(response);
