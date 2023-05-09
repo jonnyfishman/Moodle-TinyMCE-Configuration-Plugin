@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 $functions = array(
     'tiny_configurator_buttons_get' => array(
         'classname'   => 'tiny_configurator\external\get_buttons',
-        'methodname'  => 'get_buttons',
+        'methodname'  => 'execute',
         'description' => 'Returns the value of buttons',
         'type'        => 'read',
         'ajax'        => true
