@@ -18,8 +18,7 @@ namespace tiny_configurator\external;
 
 class get_buttons {
     public static function get_buttons() {
-        global $DB;
-        $setting = $DB->get_field('tiny_configurator', 'disabledbuttons', ['id' => 1]);
+        $setting = get_config('tiny_configurator', 'buttons');
         return $setting;
     }
 }

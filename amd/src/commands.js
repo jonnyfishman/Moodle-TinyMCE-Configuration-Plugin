@@ -21,10 +21,13 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 import {removeSubmenuItem} from 'editor_tiny/utils';
+import {getData} from './options';
 
 export const getSetup = async() => {
 
     return (editor) => {
+
+      console.log(getData(editor).params);
 
         editor.on('init', function() {
           // This remmoves a nested menu item

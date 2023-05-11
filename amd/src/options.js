@@ -1,4 +1,3 @@
-<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,22 +14,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * External service definitions for tiny_autosavse.
+ * Options helper for Tiny Record RTC plugin.
  *
- * @package tiny_autosave
- * @copyright 2022 Andrew Lyons <andrew@nicols.co.uk>
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @module      tiny_recordrtc/options
+ * @copyright   2022, Stevani Andolo <stevani@hotmail.com.au>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+import {pluginName} from './common';
+import {getPluginOptionName} from 'editor_tiny/options';
 
-$functions = array(
-    'tiny_configurator_buttons_get' => array(
-        'classname'   => 'tiny_configurator\external\get_buttons',
-        'methodname'  => 'execute',
-        'description' => 'Returns the value of buttons',
-        'type'        => 'read',
-        'ajax'        => true
-    )
-);
+const dataName = getPluginOptionName(pluginName, 'data');
+
+export const register = (editor) => {
+    const registerOption = editor.options.register;
+
+    registerOption(dataName, {
+        processor: 'object',
+    });
+
+};
+
+export const getData = (editor) => editor.options.get(dataName);
 

@@ -36,12 +36,19 @@ class plugininfo extends plugin implements plugin_with_configuration {
         array $fpoptions,
         ?editor $editor = null
     ): array {
-        $permissions = [
-            'upload' => true,
+        $disabledButtons = get_config('tiny_configurator', 'buttons');
+        
+        $params = [
+            'disabledButtons' => $disabledButtons
         ];
+
+        $data = [
+            'params' => $params,
+            'fpoptions' => $fpoptions
+        ];
+
         return [
-            'permissions' => $permissions,
-            'storeinrepo' => true,
+            'data' => $data
         ];
     }
 }

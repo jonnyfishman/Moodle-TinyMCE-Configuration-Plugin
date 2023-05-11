@@ -27,6 +27,8 @@ import {component, pluginName} from './common';
 import * as Commands from './commands';
 import * as Configuration from './configuration';
 
+import * as Options from './options';
+
 export default new Promise(async(resolve) => {
     const [
         tinyMCE,
@@ -35,11 +37,14 @@ export default new Promise(async(resolve) => {
     ] = await Promise.all([
         getTinyMCE(),
         Commands.getSetup(),
-        getPluginMetadata(component, pluginName),
+        getPluginMetadata(component, pluginName)
     ]);
 
     tinyMCE.PluginManager.add(`${component}/plugin`, (editor) => {
         // This deals with the menu items
+
+        Options.register(editor);
+
         setupCommands(editor);
 
         return pluginMetadata;
