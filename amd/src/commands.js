@@ -20,7 +20,10 @@
  * @copyright   2022, Stevani Andolo  <stevani@hotmail.com.au>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-import {removeSubmenuItem} from 'editor_tiny/utils';
+import {
+  removeSubmenuItem,
+  // removeToolbarButtons,
+} from 'editor_tiny/utils';
 import {getData} from './options';
 
 export const getSetup = async() => {
@@ -35,5 +38,6 @@ export const getSetup = async() => {
           removeSubmenuItem(editor, 'align', 'tiny:left');
 
         });
+
     };
 };
