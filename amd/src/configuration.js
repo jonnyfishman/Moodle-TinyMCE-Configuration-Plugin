@@ -23,11 +23,34 @@
 
 // import {accessbilityButtonName} from './common';
 import {
-  removeToolbarButtons,
-  removeMenubarItem
+  removeMenubarItem,
+  removeToolbarButtons
 } from 'editor_tiny/utils';
+import {component} from './common';
+
 
 export const configure = async (instanceConfig) => {
+
+
+  // use async IIFE to wait for object elements to be added
+  const getPluginParams = await (async () => {
+    const pluginName = `${component}/plugin:data`;
+
+    while (!instanceConfig[pluginName]) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    return instanceConfig[pluginName].params;
+  })();
+
+  console.log(getPluginParams);
+
+  const buttonsToRemove = getPluginParams.disabledButtons.split('|');
+  console.log(buttonsToRemove);
+
+  instanceConfig.toolbar = removeToolbarButtons(instanceConfig.toolbar, 'formatting', buttonsToRemove);
+
+  // These come from editor.js in parent
 
   // This could be tweaked to change the colours to match the theme etc.
   if (instanceConfig.menu.format) {
@@ -58,11 +81,12 @@ export const configure = async (instanceConfig) => {
   instanceConfig.menu = removeMenubarItem(instanceConfig.menu, 'format', 'bold');
 
   // This is how to remove toolbar buttons
-  instanceConfig.toolbar = removeToolbarButtons(instanceConfig.toolbar, 'formatting', ['bold','italic']);
 
   return instanceConfig;
 
 };
+
+// Need to check to see if we can remove external/classes directory
 
 /* The tinyMCE instance object:
 
