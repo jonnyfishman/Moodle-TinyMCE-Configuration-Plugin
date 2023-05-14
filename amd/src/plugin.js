@@ -41,6 +41,7 @@ export default new Promise(async(resolve) => {
     ]);
 
     tinyMCE.PluginManager.add(`${component}/plugin`, (editor) => {
+
         // This deals with the menu items
 
         Options.register(editor);
