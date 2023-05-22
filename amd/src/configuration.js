@@ -22,16 +22,18 @@
  */
 
 // import {accessbilityButtonName} from './common';
+/*
 import {
   removeMenubarItem
 } from 'editor_tiny/utils';
+*/
 import {component} from './common';
 
 export const configure = async (instanceConfig) => {
 
-
+  console.log(instanceConfig);
   // use async IIFE to wait for object elements to be added
-  const disabledToobarButtons = await (async () => {
+  const pluginParams = await (async () => {
     const pluginName = `${component}/plugin:data`;
 
     while (!instanceConfig[pluginName]) {
@@ -40,16 +42,16 @@ export const configure = async (instanceConfig) => {
 
     return instanceConfig[pluginName].params;
   })();
-
-  console.log(disabledToobarButtons);
-
-  const buttonsToRemove = disabledToobarButtons.disabledToobarButtons.split(' ');
+  console.log('after', instanceConfig);
+  // remove toolbar items
+  const buttonsToRemove = pluginParams.disabledToolbarButtons.split(' ');
   buttonsToRemove.forEach(button => {
+
     if( button.includes("[") ) { // remove top level button
       instanceConfig.toolbar = instanceConfig.toolbar.filter(function(item) {
-        return item.name !== button.replace('[|]','');
+        return item.name !== button.replace(/[\[\]]/g, '');
       });
-    } else {
+    } else { // remove button
       instanceConfig.toolbar.forEach(function (element) {
         element.items = element.items.filter(function (item) {
           return item !== button;
@@ -58,8 +60,24 @@ export const configure = async (instanceConfig) => {
     }
   });
 
-  // These come from editor.js in parent
+  // remove menu items
+  const menusToRemove = pluginParams.disabledMenuItems.split(' ');
+  console.log(menusToRemove);
+  menusToRemove.forEach(menuName => {
 
+    if( menuName.includes(":") ) { // remove top level button
+      const parts = menuName.split(':');
+      instanceConfig.menu[parts[0]].items = instanceConfig.menu[parts[0]].items.replace(parts[1], '');
+
+    } else { // remove button
+      instanceConfig.menu = instanceConfig.menu.filter(function(item) {
+        return item.title !== menuName;
+      });
+    }
+  });
+
+  // These come from editor.js in parent
+  /*
   // This could be tweaked to change the colours to match the theme etc.
   if (instanceConfig.menu.format) {
       instanceConfig.menu.format.items = instanceConfig.menu.format.items
@@ -79,16 +97,12 @@ export const configure = async (instanceConfig) => {
           // Remove any duplicate separators.
           .replaceAll(/\| *\|/g, '|');
   }
+  */
 
   // This removes a menu item intirely from the menu bar
   if (instanceConfig.menu.edit) {
-      instanceConfig.menu.edit.items = '';
+      // instanceConfig.menu.edit.items = '';
   }
-
-  // This is how to remove menu buttons
-  instanceConfig.menu = removeMenubarItem(instanceConfig.menu, 'format', 'bold');
-
-  // This is how to remove toolbar buttons
   console.log(instanceConfig);
   return instanceConfig;
 
