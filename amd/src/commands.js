@@ -24,13 +24,13 @@ import {
   removeSubmenuItem,
   // removeToolbarButtons,
 } from 'editor_tiny/utils';
-import {getData} from './options';
+// import {getData} from './options';
 
 export const getSetup = async() => {
 
     return (editor) => {
 
-      console.log(getData(editor).params);
+      // console.log(getData(editor).params);
 
         editor.on('init', function() {
           // This remmoves a nested menu item
