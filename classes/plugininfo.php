@@ -36,12 +36,12 @@ class plugininfo extends plugin implements plugin_with_configuration {
         array $fpoptions,
         ?editor $editor = null
     ): array {
-        $disabledToobarButtons = get_config('tiny_configurator', 'disabledToobarButtons');
+        $disabledToolbarButtons = get_config('tiny_configurator', 'disabledToolbarButtons');
         $quickbarsSelectionToolbar = get_config('tiny_configurator', 'quickbarsSelectionToolbar');
         $disabledMenuItems = get_config('tiny_configurator', 'disabledMenuItems');
         
         $params = [
-            'disabledToobarButtons' => $disabledToobarButtons,
+            'disabledToolbarButtons' => $disabledToolbarButtons,
             'quickbarsSelectionToolbar' => $quickbarsSelectionToolbar,
             'disabledMenuItems' => $disabledMenuItems
         ];

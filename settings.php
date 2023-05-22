@@ -9,7 +9,7 @@ $settings = new admin_settingpage('tiny_configurator_settings', new lang_string(
 if ($ADMIN->fulltree) {
 
     // object
-    $setting = new admin_setting_configtextarea('tiny_configurator/disabledToobarButtons',
+    $setting = new admin_setting_configtextarea('tiny_configurator/disabledToolbarButtons',
         new lang_string('buttons', 'tiny_configurator'),
         new lang_string('buttonsdesc', 'tiny_configurator') . ' [history] undo redo [formatting] bold italic [content] tiny_media_image tiny_media_video tiny_recordrtc_audio tiny_recordrtc_video link tiny_h5p tiny_link_link tiny_link_unlink [alignment] alignleft aligncenter alignright [directionality] ltr rtl [indentation] outdent indent [lists] bullist numlist [advanced] tiny_equation [comments] addcomment',
         '[directionality] ltr rtl',
