@@ -22,16 +22,15 @@
  */
 
 // import {accessbilityButtonName} from './common';
-/*
+
 import {
-  removeMenubarItem
+  removeToolbarButton
 } from 'editor_tiny/utils';
-*/
+
 import {component} from './common';
 
 export const configure = async (instanceConfig) => {
 
-  console.log(instanceConfig);
   // use async IIFE to wait for object elements to be added
   const pluginParams = await (async () => {
     const pluginName = `${component}/plugin:data`;
@@ -42,37 +41,41 @@ export const configure = async (instanceConfig) => {
 
     return instanceConfig[pluginName].params;
   })();
-  console.log('after', instanceConfig);
+
+  // could this be sped up by removing elements from params as they are used?
+
   // remove toolbar items
   const buttonsToRemove = pluginParams.disabledToolbarButtons.split(' ');
   buttonsToRemove.forEach(button => {
 
-    if( button.includes("[") ) { // remove top level button
-      instanceConfig.toolbar = instanceConfig.toolbar.filter(function(item) {
-        return item.name !== button.replace(/[\[\]]/g, '');
+    if( button.includes(":") ) { // remove button
+      const parts = button.split(':');
+      instanceConfig.toolbar = removeToolbarButton(instanceConfig.toolbar, parts[0], parts[1]);
+
+    } else { // remove button menu
+      instanceConfig.toolbar = instanceConfig.toolbar.filter(function (toolbarItem) {
+          return toolbarItem.name !== button;
       });
-    } else { // remove button
-      instanceConfig.toolbar.forEach(function (element) {
-        element.items = element.items.filter(function (item) {
-          return item !== button;
-        });
-      });
+
     }
   });
 
   // remove menu items
   const menusToRemove = pluginParams.disabledMenuItems.split(' ');
-  console.log(menusToRemove);
+
   menusToRemove.forEach(menuName => {
 
-    if( menuName.includes(":") ) { // remove top level button
+    if( menuName.includes(":") ) { // remove menu item
       const parts = menuName.split(':');
       instanceConfig.menu[parts[0]].items = instanceConfig.menu[parts[0]].items.replace(parts[1], '');
 
-    } else { // remove button
-      instanceConfig.menu = instanceConfig.menu.filter(function(item) {
-        return item.title !== menuName;
-      });
+    } else { // remove menu
+      for (const name in instanceConfig.menu) {
+        if (instanceConfig.menu[name] === menuName) {
+          delete instanceConfig.menu[name];
+          break;
+        }
+      }
     }
   });
 
