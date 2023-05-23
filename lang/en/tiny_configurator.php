@@ -24,6 +24,14 @@
 
 $string['pluginname'] = 'Remove Tiny editor buttons';
 $string['pluginnamedesc'] = 'A plugin for disabling buttons in the TinyMCE text editor';
-$string['buttons'] = 'Disabled Buttons';
-$string['buttonsdesc'] = 'Enter a list of button names separated by a vertical bar (|) that should be disabled in the text editor';
-$string['helplinktext'] = 'Configurator';
+
+$string['disabledToolbarButtons'] = 'Disable Toolbar Buttons';
+$string['disabledToolbarButtonsDesc'] = 'Default Values [denotes parent]: [history] undo redo [formatting] bold italic [content] tiny_media_image tiny_media_video tiny_recordrtc_audio tiny_recordrtc_video link tiny_h5p tiny_link_link tiny_link_unlink [alignment] alignleft aligncenter alignright [directionality] ltr rtl [indentation] outdent indent [lists] bullist numlist [advanced] tiny_equation [comments] addcomment';
+
+$string['disabledMenuItems'] = 'Disable Menu Items';
+$string['disabledMenuItemsDesc'] = 'Default Values [denotes parent]: [File] [Edit] undo redo cut copy paste pastetext selectall searchreplace [View] code visualaid visualchars visualblocks spellchecker preview fullscreen showcomments [Insert] tiny_media_image tiny_link_link tiny_media_video tiny_recordrtc_audio tiny_recordrtc_video addcomment pageembed template codesample inserttable charmap emoticons hr pagebreak nonbreaking anchor tableofcontents insertdatetime tiny_equation tiny_h5p [Format] bold italic underline strikethrough superscript subscript codeformat blocks align lineheight language removeformat [Tools] spellchecker spellcheckerlanguage a11ycheck code wordcount tiny_accessibilitychecker tiny_mediamanager [Table] inserttable cell row column advtablesort tableprops deletetable [Help] help';
+
+$string['quickbarsSelectionToolbar'] = 'Customise Quicklinks Toolbar';
+$string['quickbarsSelectionToolbarDesc'] = 'Default Values: bold italic quicklink h3 h4 h5 h6 blockquote';
+
+$string['helplinktext'] = 'To remove a button or menu item add the parent name followed by a colon. To remove the parent just use the parent name';
