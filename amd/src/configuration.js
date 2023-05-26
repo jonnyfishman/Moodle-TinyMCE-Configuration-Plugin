@@ -24,7 +24,9 @@
 // import {accessbilityButtonName} from './common';
 
 import {
-  removeToolbarButton
+  removeToolbarButton,
+  addToolbarButton,
+  addMenubarItem
 } from 'editor_tiny/utils';
 
 import {component} from './common';
@@ -60,25 +62,88 @@ export const configure = async (instanceConfig) => {
     }
   });
 
-  // remove menu items
-  const menusToRemove = pluginParams.disabledMenuItems.split(' ');
+// add toolbar items
+const buttonsToAdd = pluginParams.addToolbarButtons.split(' ');
+instanceConfig.toolbar.forEach((toolbar, index) => {
 
-  menusToRemove.forEach(menuName => {
+  buttonsToAdd.forEach(button => {
+    let name,item;
 
-    if( menuName.includes(":") ) { // remove menu item
-      const parts = menuName.split(':');
-      instanceConfig.menu[parts[0]].items = instanceConfig.menu[parts[0]].items.replace(parts[1], '');
+    if ( button.includes(":") ) {
+      const parts = button.split(':');
+      name = parts[0];
+      item = parts[1];
+    }
+    else {
+      name = button;
+    }
 
-    } else { // remove menu
-      for (const name in instanceConfig.menu) {
-        if (instanceConfig.menu[name] === menuName) {
-          delete instanceConfig.menu[name];
-          break;
-        }
-      }
+    if ( toolbar.name === name ) {
+      instanceConfig.toolbar = addToolbarButton(instanceConfig.toolbar, name, item);
+    } else if ( index === instanceConfig.toolbar.length - 1 ) {
+      instanceConfig.toolbar.push({
+        name: button,
+        items: []
+      });
     }
   });
 
+});
+
+// remove menu items
+const menusToRemove = pluginParams.disabledMenuItems.split(' ');
+
+menusToRemove.forEach(menuName => {
+
+  if( menuName.includes(":") ) { // remove menu item
+    const parts = menuName.split(':');
+    instanceConfig.menu[parts[0]].items = instanceConfig.menu[parts[0]].items.replace(parts[1], '');
+
+  } else { // remove menu
+    for (const name in instanceConfig.menu) {
+      if (instanceConfig.menu[name] === menuName) {
+        delete instanceConfig.menu[name];
+        break;
+      }
+    }
+  }
+});
+
+  // add menu items
+  const menuToAdd = pluginParams.addMenuItems.split(' ');
+
+  menuToAdd.forEach(menuItem => {
+    let section,item;
+    console.log(menuItem);
+    if ( menuItem.includes(":") ) {
+      const parts = menuItem.split(':');
+      section = parts[0];
+      item = ' ' + parts[1];
+    }
+    else {
+      section = menuItem;
+      item = '';
+    }
+
+    instanceConfig.menu = addMenubarItem(instanceConfig.menu, section, item);
+  });
+
+  // remove quickbar items
+  const quickbarToRemove = pluginParams.quickbarsSelectionToolbar.split(' ');
+
+  quickbarToRemove.forEach(button => {
+    const escapedButton = button.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    instanceConfig.quickbars_selection_toolbar = instanceConfig.quickbars_selection_toolbar.replace(
+      new RegExp(escapedButton, 'g'), ''
+    );
+  });
+
+  // add quickbar items
+  const quickbarToAdd = pluginParams.addQuickbarsSelectionToolbar.split(' ');
+
+  quickbarToAdd.forEach(button => {
+    instanceConfig.quickbars_selection_toolbar += ' ' + button;
+  });
   // These come from editor.js in parent
   /*
   // This could be tweaked to change the colours to match the theme etc.
@@ -102,10 +167,6 @@ export const configure = async (instanceConfig) => {
   }
   */
 
-  // This removes a menu item intirely from the menu bar
-  if (instanceConfig.menu.edit) {
-      // instanceConfig.menu.edit.items = '';
-  }
   console.log(instanceConfig);
   return instanceConfig;
 
