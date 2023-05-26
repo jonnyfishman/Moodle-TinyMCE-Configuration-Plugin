@@ -31,7 +31,16 @@ $string['disabledToolbarButtonsDesc'] = 'Default Values [denotes parent]: [histo
 $string['disabledMenuItems'] = 'Disable Menu Items';
 $string['disabledMenuItemsDesc'] = 'Default Values [denotes parent]: [File] [Edit] undo redo cut copy paste pastetext selectall searchreplace [View] code visualaid visualchars visualblocks spellchecker preview fullscreen showcomments [Insert] tiny_media_image tiny_link_link tiny_media_video tiny_recordrtc_audio tiny_recordrtc_video addcomment pageembed template codesample inserttable charmap emoticons hr pagebreak nonbreaking anchor tableofcontents insertdatetime tiny_equation tiny_h5p [Format] bold italic underline strikethrough superscript subscript codeformat blocks align lineheight language removeformat [Tools] spellchecker spellcheckerlanguage a11ycheck code wordcount tiny_accessibilitychecker tiny_mediamanager [Table] inserttable cell row column advtablesort tableprops deletetable [Help] help';
 
-$string['quickbarsSelectionToolbar'] = 'Customise Quicklinks Toolbar';
+$string['quickbarsSelectionToolbar'] = 'Remove Quicklinks Toolbar Elements';
 $string['quickbarsSelectionToolbarDesc'] = 'Default Values: bold italic quicklink h3 h4 h5 h6 blockquote';
+
+$string['addToolbarButtons'] = 'Add Toolbar Buttons';
+$string['addToolbarButtonsDesc'] = 'Add to a toolbar by including its name followed by : (to create a new toolbar omit the : items can then be added to it).';
+
+$string['addQuickbarsSelectionToolbar'] = 'Add Quicklinks Toolbar Elements';
+$string['addQuickbarsSelectionToolbarDesc'] = 'Add the element name.';
+
+$string['addMenuItems'] = 'Add Menu Items';
+$string['addMenuItemsDesc'] = 'Add to a menu by including its name followed by : (Only existing menu names are allowed).';
 
 $string['helplinktext'] = 'To remove a button or menu item add the parent name followed by a colon. To remove the parent just use the parent name';

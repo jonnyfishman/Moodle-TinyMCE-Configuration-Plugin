@@ -39,11 +39,17 @@ class plugininfo extends plugin implements plugin_with_configuration {
         $disabledToolbarButtons = get_config('tiny_configurator', 'disabledToolbarButtons');
         $quickbarsSelectionToolbar = get_config('tiny_configurator', 'quickbarsSelectionToolbar');
         $disabledMenuItems = get_config('tiny_configurator', 'disabledMenuItems');
+        $addToolbarButtons = get_config('tiny_configurator', 'addToolbarButtons');
+        $addQuickbarsSelectionToolbar = get_config('tiny_configurator', 'addQuickbarsSelectionToolbar');
+        $addMenuItems = get_config('tiny_configurator', 'addMenuItems');
         
         $params = [
             'disabledToolbarButtons' => $disabledToolbarButtons,
             'quickbarsSelectionToolbar' => $quickbarsSelectionToolbar,
-            'disabledMenuItems' => $disabledMenuItems
+            'disabledMenuItems' => $disabledMenuItems,
+            'addToolbarButtons' => $addToolbarButtons,
+            'addQuickbarsSelectionToolbar' => $addQuickbarsSelectionToolbar,
+            'addMenuItems' => $addMenuItems            
         ];
 
         $data = [
