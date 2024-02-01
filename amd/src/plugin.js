@@ -16,7 +16,7 @@
 /**
  * Tiny Media Manager plugin for Moodle.
  *
- * @module      tiny_configurator/plugin
+ * @module      tiny_tiny_configurator/plugin
  * @copyright   2022, Stevani Andolo  <stevani@hotmail.com.au>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -24,33 +24,21 @@ import {getTinyMCE} from 'editor_tiny/loader';
 import {getPluginMetadata} from 'editor_tiny/utils';
 
 import {component, pluginName} from './common';
-import * as Commands from './commands';
 import * as Configuration from './configuration';
 
 import * as Options from './options';
 
 export default new Promise(async(resolve) => {
-    const [
-        tinyMCE,
-        setupCommands,
-        pluginMetadata,
-    ] = await Promise.all([
-        getTinyMCE(),
-        Commands.getSetup(),
-        getPluginMetadata(component, pluginName)
-    ]);
+    const tinyMCE = await getTinyMCE();
+    const pluginMetadata = await getPluginMetadata(component, pluginName);
 
     tinyMCE.PluginManager.add(`${component}/plugin`, (editor) => {
 
-        // This deals with the menu items
-
         Options.register(editor);
-
-        setupCommands(editor);
 
         return pluginMetadata;
     });
 
     // Resolve the new tinyMCE instance and include button configuration
-    resolve([`${component}/plugin`, Configuration]);
+    resolve([pluginName, Configuration]);
 });
