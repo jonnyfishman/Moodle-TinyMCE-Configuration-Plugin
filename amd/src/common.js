@@ -16,14 +16,15 @@
 /**
  * Tiny Media common values.
  *
- * @module      tiny_configurator/common
+ * @module      tiny_tiny_configurator/common
  * @copyright   2022, Stevani Andolo  <stevani@hotmail.com.au>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+const component = 'tiny_tiny_configurator';
+
 export default {
-    pluginName: 'tiny_configurator/plugin',
-    component: 'tiny_configurator',
-    accessbilityButtonName: 'tiny_configurator',
-    icon: 'accessibility-check',
+    pluginName: `${component}/plugin`,
+    component,
+    configuratorButtonName: 'tiny_tiny_configurator',
 };
