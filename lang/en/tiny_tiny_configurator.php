@@ -55,5 +55,5 @@ $string['bonus_heading'] = 'Bonus Settings';
 $string['colorMap'] = 'Colour Palette';
 $string['colorMapDesc'] = "<p>Add a custom palette to TinyMCE forecolor and backcolor buttons. Use the form [name]:[hex value] with each colour on a new line.</p><p><em>N.B. spaces in names should use _ as a separator, hex values must include #</em></p>";
  
-$string['helplinktext'] = 'To remove a button or menu item add the parent name followed by a colon. To remove the parent just use the parent name';
+$string['helplinktext'] = 'Tiny Configurator';
 
