@@ -25,15 +25,35 @@ import {pluginName} from './common';
 import {getPluginOptionName} from 'editor_tiny/options';
 
 const dataName = getPluginOptionName(pluginName, 'data');
+const getData = (editor) => editor.options.get(dataName);
 
-export const register = (editor) => {
-    const registerOption = editor.options.register;
+export const register = async (editor) => {
 
-    registerOption(dataName, {
-        processor: 'object',
+  const registerOption = editor.options.register;
+
+  registerOption(dataName, {
+      processor: 'object',
+  });
+
+  const colorMap = getData(editor).params.colorMapSettings;
+
+  if (colorMap && colorMap.length > 0) {
+    // Register colors
+    registerOption('color_map', {
+      processor: 'array',
+      default: colorMap
     });
+
+    // Hide colorPicker
+    registerOption('custom_colors', {
+      processor: 'boolean',
+      default: false
+    });
+
+  }
 
 };
 
-export const getData = (editor) => editor.options.get(dataName);
-
+export {
+  getData
+};
