@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace tiny_configurator\privacy;
+namespace tiny_tiny_configurator\privacy;
 
 /**
  * Privacy Subsystem implementation for the accessibilitychecker plugin for TinyMCE.
  *
- * @package tiny_configurator
+ * @package tiny_tiny_configurator
  * @copyright 2022 Andrew Lyons <andrew@nicols.co.uk>
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

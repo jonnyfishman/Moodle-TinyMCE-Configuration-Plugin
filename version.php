@@ -17,7 +17,7 @@
 /**
  * Tiny media plugin version details.
  *
- * @package    tiny_configurator
+ * @package    tiny_tiny_configurator
  * @copyright  2022, Stevani Andolo <stevani@hotmail.com.au>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,4 +26,4 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2023043700;
 $plugin->requires  = 2023041800;
-$plugin->component = 'tiny_configurator';
+$plugin->component = 'tiny_tiny_configurator';
